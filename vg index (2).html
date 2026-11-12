@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurelia Vault — Exclusive 2026 Rewards & Gift Card Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        obsidian: '#07090D',
+                        charcoal: '#0E1219',
+                        gold: {
+                            300: '#FDE68A',
+                            400: '#FBBF24',
+                            500: '#D4AF37',
+                            600: '#B48E24',
+                        },
+                        emerald: {
+                            400: '#34D399',
+                            500: '#10B981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #07090D;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Ambient Radial Glows */
+        .ambient-glow {
+            background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.14) 0%, rgba(212, 175, 55, 0.08) 35%, rgba(7, 9, 13, 0) 70%);
+        }
+
+        /* Glassmorphism Card Styling */
+        .glass-card {
+            background: linear-gradient(145deg, rgba(20, 26, 36, 0.85) 0%, rgba(11, 15, 22, 0.92) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.15), 0 0 25px rgba(212, 175, 55, 0.12);
+        }
+
+        /* Realistic 3D Virtual Card Artwork Effect */
+        .virtual-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.1rem;
+            box-shadow:
+                inset 0 1px 1px rgba(255, 255, 255, 0.45),
+                inset 0 -2px 6px rgba(0, 0, 0, 0.5),
+                0 16px 32px -10px rgba(0, 0, 0, 0.85);
+            transform-style: preserve-3d;
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+        }
+
+        .glass-card:hover .virtual-card {
+            box-shadow:
+                inset 0 1px 2px rgba(255, 255, 255, 0.6),
+                inset 0 -2px 8px rgba(0, 0, 0, 0.6),
+                0 22px 40px -10px rgba(0, 0, 0, 0.95);
+        }
+
+        /* Photorealistic Card Background Photo & Gloss Layer */
+        .card-photo-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .glass-card:hover .card-photo-bg {
+            transform: scale(1.07);
+        }
+
+        /* Metallic Shimmer Overlay on Virtual Cards */
+        .virtual-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -75%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.28) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            transition: left 0.8s ease;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .glass-card:hover .virtual-card::after {
+            left: 140%;
+        }
+
+        /* Holographic Security Foil Seal */
+        .holo-foil {
+            background: conic-gradient(from 45deg, #fde68a, #34d399, #60a5fa, #f472b6, #fde68a);
+            box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Embossed Card Typography */
+        .embossed-text {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85), 0 -1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        /* EMV Chip Graphic */
+        .emv-chip {
+            width: 36px;
+            height: 26px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #FEF08A 0%, #D4AF37 45%, #854D0E 100%);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+            position: relative;
+            overflow: hidden;
+        }
+        .emv-chip::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.35);
+            border-radius: 2px;
+        }
+        .emv-chip::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card:hover .virtual-card {
+            transform: scale(1.02);
+        }
+
+        /* Metallic Shimmer Overlay on Virtual Cards */
+        .virtual-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 45%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.18) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            transition: all 0.75s ease;
+            pointer-events: none;
+        }
+
+        .glass-card:hover .virtual-card::after {
+            left: 130%;
+        }
+
+        /* EMV Chip Graphic */
+        .emv-chip {
+            width: 34px;
+            height: 24px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #FDE68A 0%, #D4AF37 50%, #926F1A 100%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .emv-chip::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            border-radius: 2px;
+        }
+
+        /* Glowing CTA Button */
+        .btn-claim {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            transition: all 0.25s ease;
+        }
+
+        .btn-claim:hover {
+            background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+            box-shadow: 0 6px 28px rgba(16, 185, 129, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-claim-gold {
+            background: linear-gradient(135deg, #FBBF24 0%, #D4AF37 100%);
+            color: #07090D;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+            transition: all 0.25s ease;
+        }
+
+        .btn-claim-gold:hover {
+            background: linear-gradient(135deg, #FDE68A 0%, #FBBF24 100%);
+            box-shadow: 0 6px 28px rgba(212, 175, 55, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transform: translateY(-1px);
+        }
+
+        /* Smooth Accordion Transition */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07090D;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 border-b border-white/[0.06] bg-[#07090D]/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-gold-400 via-gold-500 to-emerald-500 p-[1px] shadow-lg shadow-emerald-500/10">
+                    <div class="w-full h-full bg-[#0B0F17] rounded-[11px] flex items-center justify-center">
+                        <i data-lucide="crown" class="w-5 h-5 text-gold-400 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="font-display font-bold text-lg sm:text-xl tracking-tight text-white">AURELIA<span class="text-gold-400">VAULT</span></span>
+                    <span class="hidden sm:block text-[10px] uppercase tracking-[0.2em] text-emerald-400 font-semibold -mt-1">Premier Rewards</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#offers" class="hover:text-gold-300 transition-colors">Featured Rewards</a>
+                <a href="#how-it-works" class="hover:text-gold-300 transition-colors">How It Works</a>
+                <a href="#faq" class="hover:text-gold-300 transition-colors">FAQ</a>
+            </nav>
+
+            <!-- Live Status Pill -->
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-xs font-medium text-emerald-300">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                    </span>
+                    <span class="hidden xs:inline">7 Offers</span> Active
+                </div>
+                <a href="#offers" class="px-4 py-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-xs sm:text-sm font-semibold text-white transition-all">
+                    Browse All
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-14 sm:pt-20 sm:pb-20 ambient-glow border-b border-white/[0.05]">
+        <!-- Decorative Grid Overlay -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
+
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Verified Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-gold-500/15 via-emerald-500/15 to-gold-500/15 border border-gold-400/30 shadow-lg shadow-black/40 mb-6 sm:mb-8">
+                <i data-lucide="shield-check" class="w-4 h-4 text-gold-400"></i>
+                <span class="text-xs sm:text-sm font-semibold tracking-wide text-gold-300 uppercase">Verified 2026 Rewards Portal</span>
+            </div>
+
+            <!-- Bold Headline -->
+            <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-[1.12] mb-5 sm:mb-6">
+                Unlock Exclusive <br class="hidden sm:inline" />
+                <span class="bg-gradient-to-r from-gold-300 via-gold-400 to-emerald-400 bg-clip-text text-transparent">
+                    Gift Cards & Cash Rewards
+                </span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="max-w-2xl mx-auto text-sm sm:text-lg text-slate-300/90 leading-relaxed mb-8 sm:mb-10">
+                Select your preferred digital reward below, complete a few quick sponsor qualification steps, and receive your instant payout or digital gift card code directly.
+            </p>
+
+            <!-- Live Activity Ticker -->
+            <div class="max-w-md mx-auto mb-8 sm:mb-10">
+                <div class="flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-2xl bg-[#0D131D]/90 border border-white/10 shadow-inner">
+                    <span class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    </span>
+                    <p id="live-ticker-text" class="text-xs sm:text-sm text-slate-300 truncate transition-opacity duration-300">
+                        <span class="font-semibold text-white">Marcus T.</span> just claimed <span class="text-emerald-400 font-semibold">CashApp $750</span> • 1m ago
+                    </p>
+                </div>
+            </div>
+
+            <!-- Trust Badges Row -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
+                <div class="flex items-center justify-center gap-2.5 px-4 py-3 rounded-2xl bg-white/[0.03] border border-white/[0.07]">
+                    <i data-lucide="zap" class="w-4 h-4 text-gold-400 shrink-0"></i>
+                    <span class="text-xs sm:text-sm font-medium text-slate-200">Instant Digital Delivery</span>
+                </div>
+                <div class="flex items-center justify-center gap-2.5 px-4 py-3 rounded-2xl bg-white/[0.03] border border-white/[0.07]">
+                    <i data-lucide="badge-check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                    <span class="text-xs sm:text-sm font-medium text-slate-200">100% Verified Offers</span>
+                </div>
+                <div class="flex items-center justify-center gap-2.5 px-4 py-3 rounded-2xl bg-white/[0.03] border border-white/[0.07]">
+                    <i data-lucide="lock" class="w-4 h-4 text-gold-400 shrink-0"></i>
+                    <span class="text-xs sm:text-sm font-medium text-slate-200">No Hidden Fees</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Offers Showcase Section -->
+    <main id="offers" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <!-- Section Header & Category Filter Bar -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-12">
+            <div>
+                <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-widest mb-2">
+                    <i data-lucide="gift" class="w-4 h-4"></i>
+                    <span>Curated Vault Selection</span>
+                </div>
+                <h2 class="font-display font-bold text-2xl sm:text-4xl text-white tracking-tight">
+                    Available Rewards & Gift Cards
+                </h2>
+            </div>
+
+            <!-- Category Filter Buttons -->
+            <div id="filter-bar" class="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-[#0D121A] border border-white/[0.08]">
+                <button data-category="all" class="filter-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-gradient-to-r from-gold-500 to-gold-400 text-obsidian shadow-md">
+                    All Offers <span class="ml-1 opacity-75">(7)</span>
+                </button>
+                <button data-category="Cash Rewards" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-white/[0.05] transition-all">
+                    Cash Rewards
+                </button>
+                <button data-category="Retail & Dining" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-white/[0.05] transition-all">
+                    Retail & Dining
+                </button>
+                <button data-category="Lifestyle & Seasonal" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-white/[0.05] transition-all">
+                    Lifestyle & Seasonal
+                </button>
+            </div>
+        </div>
+
+        <!-- Responsive Grid of 7 Offer Cards -->
+        <div id="offers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- Cards are dynamically rendered via JS for clean filtering & maintainability -->
+        </div>
+    </main>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="border-t border-white/[0.06] bg-[#090C12] py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-gold-400">Simple & Transparent</span>
+                <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mt-2 mb-4">
+                    How to Claim Your Reward
+                </h2>
+                <p class="text-sm sm:text-base text-slate-400">
+                    Follow three straightforward steps to qualify for your chosen cash transfer or digital gift card voucher.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Step 1 -->
+                <div class="relative p-7 sm:p-8 rounded-3xl bg-[#0E131D] border border-white/[0.07] hover:border-emerald-500/30 transition-colors">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                            <i data-lucide="mouse-pointer-click" class="w-6 h-6"></i>
+                        </div>
+                        <span class="font-display font-extrabold text-3xl text-white/10">01</span>
+                    </div>
+                    <h3 class="font-display font-bold text-lg sm:text-xl text-white mb-2.5">
+                        1. Choose Your Reward
+                    </h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Browse our verified 2026 catalog and click <span class="text-emerald-400 font-medium">"Claim Offer"</span> on the cash reward, retail gift card, or sample box you want most.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative p-7 sm:p-8 rounded-3xl bg-[#0E131D] border border-white/[0.07] hover:border-gold-500/30 transition-colors">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 rounded-2xl bg-gold-500/15 border border-gold-500/30 flex items-center justify-center text-gold-400">
+                            <i data-lucide="clipboard-check" class="w-6 h-6"></i>
+                        </div>
+                        <span class="font-display font-extrabold text-3xl text-white/10">02</span>
+                    </div>
+                    <h3 class="font-display font-bold text-lg sm:text-xl text-white mb-2.5">
+                        2. Complete Quick Qualification Steps
+                    </h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Enter your valid delivery email on the official partner page and complete the required sponsor deals, surveys, or trial steps.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative p-7 sm:p-8 rounded-3xl bg-[#0E131D] border border-white/[0.07] hover:border-emerald-500/30 transition-colors">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                            <i data-lucide="wallet" class="w-6 h-6"></i>
+                        </div>
+                        <span class="font-display font-extrabold text-3xl text-white/10">03</span>
+                    </div>
+                    <h3 class="font-display font-bold text-lg sm:text-xl text-white mb-2.5">
+                        3. Receive Your Digital Code/Transfer
+                    </h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Once your qualification steps are verified, your digital gift card code or direct cash payout is dispatched straight to you.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section id="faq" class="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 sm:mb-14">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Got Questions?</span>
+            <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mt-2">
+                Frequently Asked Questions
+            </h2>
+        </div>
+
+        <div class="space-y-4" id="faq-container">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item rounded-2xl bg-[#0D121B] border border-white/[0.08] overflow-hidden">
+                <button class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors">
+                    <span class="font-semibold text-sm sm:text-base text-white">How do these reward & gift card promotions work?</span>
+                    <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-gold-400 shrink-0 transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content px-6">
+                    <p class="pb-5 text-sm text-slate-400 leading-relaxed">
+                        Our promotional partners fund high-value rewards through advertising sponsorships. When you select an offer and complete the specified sponsor deals or survey requirements on the partner portal, you unlock eligibility for the advertised gift card or cash payout.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="faq-item rounded-2xl bg-[#0D121B] border border-white/[0.08] overflow-hidden">
+                <button class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors">
+                    <span class="font-semibold text-sm sm:text-base text-white">How quickly will I receive my gift card or cash payout?</span>
+                    <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-gold-400 shrink-0 transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content px-6">
+                    <p class="pb-5 text-sm text-slate-400 leading-relaxed">
+                        Delivery speed depends on how quickly you finish the required sponsor steps. Most digital gift cards and CashApp/PayPal transfers are processed within 24–48 hours after all qualification requirements are verified.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="faq-item rounded-2xl bg-[#0D121B] border border-white/[0.08] overflow-hidden">
+                <button class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors">
+                    <span class="font-semibold text-sm sm:text-base text-white">Can I claim more than one offer from this portal?</span>
+                    <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-gold-400 shrink-0 transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content px-6">
+                    <p class="pb-5 text-sm text-slate-400 leading-relaxed">
+                        Yes! Each offer card above links to a distinct promotional campaign. You may explore multiple categories—such as Cash Rewards, Dining, or Beauty Samples—subject to each individual sponsor's household eligibility rules.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="faq-item rounded-2xl bg-[#0D121B] border border-white/[0.08] overflow-hidden">
+                <button class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors">
+                    <span class="font-semibold text-sm sm:text-base text-white">Why is it important to use accurate details when registering?</span>
+                    <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-gold-400 shrink-0 transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content px-6">
+                    <p class="pb-5 text-sm text-slate-400 leading-relaxed">
+                        Digital voucher codes, payment links, and physical sample boxes (such as ILS Beauty Samples) are delivered directly to the email or shipping address you register with. Always use valid, accurate information so your reward arrives without delay.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Disclaimer -->
+    <footer class="border-t border-white/[0.07] bg-[#05070A] py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-8 border-b border-white/[0.06]">
+                <div class="flex items-center gap-2.5">
+                    <i data-lucide="crown" class="w-5 h-5 text-gold-400"></i>
+                    <span class="font-display font-bold text-base tracking-tight text-white">AURELIA<span class="text-gold-400">VAULT</span></span>
+                </div>
+                <p class="text-xs text-slate-400">
+                    &copy; 2026 Aurelia Vault Rewards Directory. All rights reserved.
+                </p>
+            </div>
+
+            <div class="pt-6 text-xs text-slate-500 leading-relaxed space-y-2">
+                <p>
+                    <strong class="text-slate-400">Promotional Disclosure:</strong> Aurelia Vault acts as an independent promotional showcase connecting users with third-party reward programs and sponsored sample offers. Completion of specific sponsor deals, surveys, or program requirements on the destination website is required to qualify for advertised rewards.
+                </p>
+                <p>
+                    <strong class="text-slate-400">Trademark Notice:</strong> CashApp, PayPal, Taco Bell, Ross Stores, Spirit Halloween/Christmas, and all associated brand names or logos are trademarks or registered trademarks of their respective owners. This portal is not directly affiliated with, endorsed by, or sponsored by these brands.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Application Logic & Offer Data -->
+    <script>
+        // Exact 7 Offers with authentic physical/digital gift card visuals, curated photography, and exact affiliate links
+        const offersData = [
+            {
+                id: 1,
+                title: "CashApp $750",
+                category: "Cash Rewards",
+                tag: "Most Popular",
+                tagStyle: "bg-emerald-500/20 text-emerald-300 border-emerald-400/40",
+                valueDisplay: "$750",
+                brandTitle: "Cash App",
+                subLabel: "OFFICIAL VISA GIFT & CASH CARD",
+                cardNumber: "4829  ••••  ••••  7500",
+                networkLabel: "VISA",
+                photoUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=900&q=85",
+                overlayGradient: "from-[#022C22]/90 via-[#065F46]/75 to-[#00D632]/55",
+                accentBorder: "border-[#00D632]/50",
+                brandBadgeBg: "bg-[#00D632] text-[#051B0C]",
+                brandSvg: `<svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M13.56 7.45c.93.26 1.78.78 2.4 1.49.22.25.6.27.85.04l1.18-1.08c.26-.24.27-.64.03-.89a7.17 7.17 0 0 0-3.23-1.92l.34-1.36a.6.6 0 0 0-.58-.74h-1.45a.6.6 0 0 0-.58.45l-.32 1.3c-2.22.22-3.83 1.54-3.83 3.44 0 2.04 1.56 2.95 3.74 3.47 1.66.39 2.27.82 2.27 1.57 0 .82-.81 1.35-2.04 1.35-1.26 0-2.36-.53-3.13-1.42a.6.6 0 0 0-.86-.05l-1.21 1.11a.6.6 0 0 0-.04.85 7.4 7.4 0 0 0 3.78 2.13l-.34 1.38a.6.6 0 0 0 .58.74h1.45a.6.6 0 0 0 .58-.45l.33-1.33c2.4-.23 4.02-1.64 4.02-3.62 0-2.06-1.52-3.04-3.93-3.6-1.54-.36-2.07-.75-2.07-1.44 0-.72.71-1.2 1.81-1.2.43 0 .86.08 1.24.22z"/></svg>`,
+                isPhysicalCard: true,
+                description: "Qualify for a $750 direct CashApp balance deposit upon completing quick sponsor steps.",
+                availability: "High Demand • 14 spots left",
+                ctaStyle: "btn-claim-gold",
+                link: "https://app.trcefy.com/click?pid=2&offer_id=11788&sub2=u809326&sub5=s1Nafiul"
+            },
+            {
+                id: 2,
+                title: "Perksurge - $1000 CashApp",
+                category: "Cash Rewards",
+                tag: "High Value",
+                tagStyle: "bg-gold-400/20 text-gold-300 border-gold-400/40",
+                valueDisplay: "$1,000",
+                brandTitle: "Cash App • Black Edition",
+                subLabel: "PERKSURGE VIP METAL CARD",
+                cardNumber: "5412  ••••  ••••  1000",
+                networkLabel: "VIP METAL",
+                photoUrl: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=900&q=85",
+                overlayGradient: "from-[#090A0F]/95 via-[#1C1917]/80 to-[#78350F]/55",
+                accentBorder: "border-gold-400/60",
+                brandBadgeBg: "bg-gradient-to-br from-gold-300 to-gold-500 text-obsidian",
+                brandSvg: `<svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M13.56 7.45c.93.26 1.78.78 2.4 1.49.22.25.6.27.85.04l1.18-1.08c.26-.24.27-.64.03-.89a7.17 7.17 0 0 0-3.23-1.92l.34-1.36a.6.6 0 0 0-.58-.74h-1.45a.6.6 0 0 0-.58.45l-.32 1.3c-2.22.22-3.83 1.54-3.83 3.44 0 2.04 1.56 2.95 3.74 3.47 1.66.39 2.27.82 2.27 1.57 0 .82-.81 1.35-2.04 1.35-1.26 0-2.36-.53-3.13-1.42a.6.6 0 0 0-.86-.05l-1.21 1.11a.6.6 0 0 0-.04.85 7.4 7.4 0 0 0 3.78 2.13l-.34 1.38a.6.6 0 0 0 .58.74h1.45a.6.6 0 0 0 .58-.45l.33-1.33c2.4-.23 4.02-1.64 4.02-3.62 0-2.06-1.52-3.04-3.93-3.6-1.54-.36-2.07-.75-2.07-1.44 0-.72.71-1.2 1.81-1.2.43 0 .86.08 1.24.22z"/></svg>`,
+                isPhysicalCard: true,
+                description: "Our highest-tier CashApp reward tier via Perksurge. Complete required deals to unlock $1,000.",
+                availability: "Limited Tier • 6 spots left",
+                ctaStyle: "btn-claim-gold",
+                link: "https://app.trcefy.com/click?pid=2&offer_id=25563&sub2=u809326&sub5=s1taniya"
+            },
+            {
+                id: 3,
+                title: "PayPal $100",
+                category: "Cash Rewards",
+                tag: "Fast Payout",
+                tagStyle: "bg-sky-500/20 text-sky-300 border-sky-400/30",
+                valueDisplay: "$100",
+                brandTitle: "PayPal",
+                subLabel: "DIGITAL & PREPAID CASH CARD",
+                cardNumber: "4532  ••••  ••••  0100",
+                networkLabel: "PAYPAL",
+                photoUrl: "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=900&q=85",
+                overlayGradient: "from-[#001C55]/92 via-[#003087]/80 to-[#0079C1]/60",
+                accentBorder: "border-sky-400/50",
+                brandBadgeBg: "bg-white text-[#003087]",
+                brandSvg: `<svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>`,
+                isPhysicalCard: true,
+                description: "Fast-track qualification for a $100 PayPal cash transfer sent directly to your verified email.",
+                availability: "Available Now • Fast Verification",
+                ctaStyle: "btn-claim",
+                link: "https://app.trcefy.com/click?pid=2&offer_id=576&sub2=u809326&sub5=s1alina"
+            },
+            {
+                id: 4,
+                title: "Taco Bell Gift Card",
+                category: "Retail & Dining",
+                tag: "Dining",
+                tagStyle: "bg-purple-500/20 text-purple-300 border-purple-400/30",
+                valueDisplay: "GIFT CARD",
+                brandTitle: "TACO BELL",
+                subLabel: "OFFICIAL DINING E-GIFT CARD",
+                cardNumber: "6011  ••••  ••••  8842",
+                networkLabel: "LIVE MÁS",
+                photoUrl: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=900&q=85",
+                overlayGradient: "from-[#2E1065]/92 via-[#581C87]/78 to-[#A21CAF]/50",
+                accentBorder: "border-purple-400/50",
+                brandBadgeBg: "bg-gradient-to-br from-[#A855F7] to-[#EC4899] text-white",
+                brandSvg: `<svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M12 2a2 2 0 0 0-2 2v.34A7.002 7.002 0 0 0 5 11v4l-2 2v1h18v-1l-2-2v-4a7.002 7.002 0 0 0-5-6.66V4a2 2 0 0 0-2-2zm0 20a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22z"/></svg>`,
+                isPhysicalCard: true,
+                description: "Enjoy your favorite meals on us with an official Taco Bell digital gift card redeemable nationwide.",
+                availability: "Available Now • Instant Code",
+                ctaStyle: "btn-claim",
+                link: "https://app.trcefy.com/click?pid=2&offer_id=23755&sub2=u809326&sub5=s1arther_team"
+            },
+            {
+                id: 5,
+                title: "Ross Gift Card",
+                category: "Retail & Dining",
+                tag: "Shopping",
+                tagStyle: "bg-cyan-500/20 text-cyan-300 border-cyan-400/30",
+                valueDisplay: "GIFT CARD",
+                brandTitle: "ROSS",
+                subLabel: "DRESS FOR LESS • STORE CARD",
+                cardNumber: "6290  ••••  ••••  3190",
+                networkLabel: "RETAIL",
+                photoUrl: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85",
+                overlayGradient: "from-[#041E42]/92 via-[#004B8D]/80 to-[#0284C7]/55",
+                accentBorder: "border-cyan-300/50",
+                brandBadgeBg: "bg-white text-[#004B8D]",
+                brandSvg: `<svg viewBox="0 0 24 24" class="w-5 h-5 fill-none stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+                isPhysicalCard: true,
+                description: "Upgrade your wardrobe and home decor with a Ross Stores shopping gift card voucher.",
+                availability: "In Stock • Ready to Claim",
+                ctaStyle: "btn-claim",
+                link: "https://app.trcefy.com/click?pid=2&offer_id=24314&sub2=u809326&sub5=s1michaleus"
+            },
+            {
+                id: 6,
+                title: "ILS - Beauty Products Samples",
+                category: "Lifestyle & Seasonal",
+                tag: "Free Samples",
+                tagStyle: "bg-rose-500/20 text-rose-300 border-rose-400/30",
+                valueDisplay: "VIP BOX",
+                brandTitle: "ILS BEAUTY",
+                subLabel: "LUXURY SKINCARE & COSMETICS BOX",
+                cardNumber: "CURATED EDITION • 2026",
+                networkLabel: "SAMPLE BOX",
+                photoUrl: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=85",
+                overlayGradient: "from-[#3B0719]/88 via-[#881337]/62 to-[#E11D48]/35",
+                accentBorder: "border-rose-300/50",
+                brandBadgeBg: "bg-gradient-to-br from-rose-200 to-rose-400 text-[#3B0719]",
+                brandSvg: `<svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"/></svg>`,
+                isPhysicalCard: false,
+                description: "Receive complimentary skincare, cosmetics, and luxury beauty product samples shipped to your door.",
+                availability: "Limited Boxes • Open Today",
+                ctaStyle: "btn-claim",
+                link: "https://app.trcefy.com/click?pid=2&offer_id=25544&sub2=u809326&sub5=s1leader"
+            },
+            {
+                id: 7,
+                title: "$750 Spirit Christmas Gift Card",
+                category: "Lifestyle & Seasonal",
+                tag: "Seasonal Special",
+                tagStyle: "bg-amber-500/20 text-amber-300 border-amber-400/30",
+                valueDisplay: "$750",
+                brandTitle: "SPIRIT CHRISTMAS",
+                subLabel: "OFFICIAL HOLIDAY E-GIFT CARD",
+                cardNumber: "6080  ••••  ••••  1225",
+                networkLabel: "HOLIDAY",
+                photoUrl: "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=900&q=85",
+                overlayGradient: "from-[#450A0A]/92 via-[#991B1B]/78 to-[#14532D]/65",
+                accentBorder: "border-gold-400/60",
+                brandBadgeBg: "bg-gradient-to-br from-gold-300 to-amber-500 text-[#450A0A]",
+                brandSvg: `<svg viewBox="0 0 24 24" class="w-5 h-5 fill-none stroke="currentColor" stroke-width="2.2"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/></svg>`,
+                isPhysicalCard: true,
+                description: "Celebrate the holiday season in style with a $750 Spirit Christmas gift card for festive decor & gifts.",
+                availability: "Seasonal Release • High Demand",
+                ctaStyle: "btn-claim-gold",
+                link: "https://app.trcefy.com/click?pid=2&offer_id=25587&sub2=u809326&sub5=s1jenin"
+            }
+        ];
+
+        const offersGrid = document.getElementById('offers-grid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        // Render Offer Cards with Photorealistic Gift Card & Product Visuals
+        function renderOffers(category = 'all') {
+            const filtered = category === 'all'
+                ? offersData
+                : offersData.filter(offer => offer.category === category);
+
+            offersGrid.innerHTML = filtered.map(offer => `
+                <article class="glass-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between group" style="perspective: 1000px;">
+                    <div>
+                        <!-- Top Row: Category & Highlight Tag -->
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                                ${offer.category}
+                            </span>
+                            <span class="px-3 py-1 rounded-full text-[11px] font-bold border ${offer.tagStyle}">
+                                ${offer.tag}
+                            </span>
+                        </div>
+
+                        <!-- Photorealistic Physical/Digital Gift Card & Product Artwork -->
+                        <div class="virtual-card tilt-card border ${offer.accentBorder} p-5 mb-5 h-48 flex flex-col justify-between select-none">
+                            <!-- Real High-Res Curated Photo Layer -->
+                            <img
+                                src="${offer.photoUrl}"
+                                alt="${offer.title}"
+                                loading="lazy"
+                                onerror="this.style.display='none'"
+                                class="card-photo-bg"
+                            />
+
+                            <!-- Rich Brand Color & Lighting Gradient Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-br ${offer.overlayGradient} pointer-events-none"></div>
+
+                            <!-- Subtle Top Edge Specular Highlight -->
+                            <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none"></div>
+
+                            <!-- Card Top Row: Authentic Brand Mark + Chip / Hologram -->
+                            <div class="flex items-center justify-between relative z-10">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-9 h-9 rounded-xl ${offer.brandBadgeBg} shadow-lg flex items-center justify-center shrink-0">
+                                        ${offer.brandSvg}
+                                    </div>
+                                    <div>
+                                        <span class="block font-display font-extrabold text-sm tracking-wide text-white embossed-text leading-tight">
+                                            ${offer.brandTitle}
+                                        </span>
+                                        <span class="block text-[9px] font-bold uppercase tracking-[0.16em] text-white/80">
+                                            ${offer.networkLabel}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                ${offer.isPhysicalCard ? `
+                                    <div class="flex items-center gap-2">
+                                        <div class="emv-chip"></div>
+                                        <i data-lucide="wifi" class="w-4 h-4 text-white/75 rotate-90"></i>
+                                    </div>
+                                ` : `
+                                    <div class="px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/25 text-[10px] font-bold uppercase tracking-wider text-white">
+                                        Free Kit
+                                    </div>
+                                `}
+                            </div>
+
+                            <!-- Card Bottom Row: Value, Embossed Serial & Holographic Foil -->
+                            <div class="relative z-10 flex items-end justify-between">
+                                <div>
+                                    <p class="text-[9px] font-bold tracking-[0.18em] text-white/85 uppercase mb-0.5 embossed-text">
+                                        ${offer.subLabel}
+                                    </p>
+                                    <p class="font-display font-extrabold text-2xl sm:text-3xl text-white tracking-tight embossed-text leading-none">
+                                        ${offer.valueDisplay}
+                                    </p>
+                                    <p class="text-[10px] font-mono text-white/75 tracking-widest mt-1.5 embossed-text">
+                                        ${offer.cardNumber}
+                                    </p>
+                                </div>
+
+                                <!-- Authentic Holographic Security Foil Badge -->
+                                <div class="flex flex-col items-end gap-1">
+                                    <div class="w-7 h-7 rounded-full holo-foil opacity-90 flex items-center justify-center">
+                                        <div class="w-3 h-3 rounded-full bg-black/25 backdrop-blur-xs"></div>
+                                    </div>
+                                    <span class="text-[8px] font-bold uppercase tracking-widest text-white/70">VALID 2026</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Offer Title & Description -->
+                        <h3 class="font-display font-bold text-xl text-white group-hover:text-gold-300 transition-colors mb-2">
+                            ${offer.title}
+                        </h3>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-5">
+                            ${offer.description}
+                        </p>
+                    </div>
+
+                    <!-- Card Footer: Availability Status & Direct External Claim Button -->
+                    <div class="pt-4 border-t border-white/[0.07]">
+                        <div class="flex items-center justify-between text-xs mb-3.5">
+                            <span class="flex items-center gap-1.5 text-emerald-400 font-medium">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                                ${offer.availability}
+                            </span>
+                            <span class="text-slate-500 font-medium">Verified</span>
+                        </div>
+
+                        <a href="${offer.link}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="${offer.ctaStyle} w-full py-3.5 px-5 rounded-xl font-display font-bold text-sm flex items-center justify-center gap-2 text-white">
+                            <span>Claim Offer</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+            `).join('');
+
+            // Re-initialize Lucide icons after DOM injection
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+
+            // Attach Interactive 3D Physical Card Tilt Physics
+            attachCardTilt();
+        }
+
+        // Smooth 3D Tilt Physics on Hover for Tangible Physical Card Feel
+        function attachCardTilt() {
+            document.querySelectorAll('.tilt-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -6;
+                    const rotateY = ((x - centerX) / centerX) * 6;
+                    card.style.transform = `rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale(1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+                });
+            });
+        }
+
+        // Category Filter Click Handlers
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => {
+                    b.classList.remove('active', 'bg-gradient-to-r', 'from-gold-500', 'to-gold-400', 'text-obsidian', 'shadow-md', 'font-semibold');
+                    b.classList.add('text-slate-300', 'font-medium');
+                });
+
+                btn.classList.add('active', 'bg-gradient-to-r', 'from-gold-500', 'to-gold-400', 'text-obsidian', 'shadow-md', 'font-semibold');
+                btn.classList.remove('text-slate-300', 'font-medium');
+
+                const selectedCategory = btn.getAttribute('data-category');
+                renderOffers(selectedCategory);
+            });
+        });
+
+        // Subtle Live Activity Ticker Rotation
+        const tickerMessages = [
+            `<span class="font-semibold text-white">Marcus T.</span> just claimed <span class="text-emerald-400 font-semibold">CashApp $750</span> • 1m ago`,
+            `<span class="font-semibold text-white">Elena R.</span> unlocked <span class="text-gold-400 font-semibold">Perksurge - $1000 CashApp</span> • 3m ago`,
+            `<span class="font-semibold text-white">David K.</span> claimed <span class="text-emerald-400 font-semibold">PayPal $100</span> • 5m ago`,
+            `<span class="font-semibold text-white">Sophia M.</span> claimed <span class="text-gold-400 font-semibold">$750 Spirit Christmas Gift Card</span> • 7m ago`,
+            `<span class="font-semibold text-white">Chloe W.</span> ordered <span class="text-emerald-400 font-semibold">ILS - Beauty Products Samples</span> • 9m ago`
+        ];
+
+        let tickerIndex = 0;
+        const tickerEl = document.getElementById('live-ticker-text');
+
+        setInterval(() => {
+            tickerEl.style.opacity = '0';
+            setTimeout(() => {
+                tickerIndex = (tickerIndex + 1) % tickerMessages.length;
+                tickerEl.innerHTML = tickerMessages[tickerIndex];
+                tickerEl.style.opacity = '1';
+            }, 300);
+        }, 4500);
+
+        // FAQ Accordion Interactivity
+        document.querySelectorAll('.faq-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const item = trigger.parentElement;
+                const content = item.querySelector('.faq-content');
+                const icon = item.querySelector('.faq-icon');
+                const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+                // Close all other items
+                document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = null);
+                document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+
+                if (!isOpen) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Initial Render
+        renderOffers('all');
+    </script>
+</body>
+</html>
